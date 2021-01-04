@@ -156,6 +156,18 @@ help_ = partial(
     help="Show help.",
 )  # type: Callable[..., Option]
 
+debug_mode = partial(
+    Option,
+    "--debug",
+    dest="debug_mode",
+    action="store_true",
+    default=False,
+    help=(
+        "Let unhandled exceptions propagate outside the main subroutine, "
+        "instead of logging them to stderr."
+    ),
+)  # type: Callable[..., Option]
+
 isolated_mode = partial(
     Option,
     "--isolated",
@@ -980,6 +992,7 @@ general_group = {
     "name": "General Options",
     "options": [
         help_,
+        debug_mode,
         isolated_mode,
         require_virtualenv,
         verbose,
